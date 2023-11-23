@@ -25,6 +25,7 @@ module.exports = {
     'react/prop-types': 0,
     'linebreak-style': 0,
     'react/state-in-constructor': 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
     'import/prefer-default-export': 0,
     'react/function-component-definition': [
       2,
