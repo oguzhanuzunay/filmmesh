@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const tmdbApiKey = process.env.REACT_APP_TMDB_API_KEY;
-const page = 1;
 
 export const tmdbApi = createApi({
   reducerPath: 'tmdbApi',
@@ -16,24 +15,28 @@ export const tmdbApi = createApi({
 
     //* Get Movies by [Type]
     getMovies: builder.query({
-      query: () => `movie/popular?page=${page}&api_key=${tmdbApiKey}`,
+      query: ({ genreIdOrCategoryName, page }) => {
+        //* Get Category by Category
+        if (
+          genreIdOrCategoryName
+          && typeof genreIdOrCategoryName === 'string'
+        ) {
+          return `movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`;
+        }
+
+        //* Get Category by Genre
+        if (
+          genreIdOrCategoryName
+          && typeof genreIdOrCategoryName === 'number'
+        ) {
+          return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&api_key=${tmdbApiKey}`;
+        }
+
+        //* Get Popular Movies
+        return `movie/popular?page=${page}&api_key=${tmdbApiKey}`;
+      },
     }),
 
-    getPopularMovies: builder.query({
-      query: () => `movie/popular?page=${page}&api_key=${tmdbApiKey}`,
-    }),
-
-    getTopRatedMovies: builder.query({
-      query: () => 'movie/top_rated',
-    }),
-
-    getUpcomingMovies: builder.query({
-      query: () => 'movie/upcoming',
-    }),
-
-    getNowPlayingMovies: builder.query({
-      query: () => 'movie/now_playing',
-    }),
   }),
 });
 
