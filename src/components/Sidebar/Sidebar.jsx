@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import React, { useEffect } from 'react';
 import {
   Divider,
@@ -11,14 +12,11 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
+
+import { useGetGenresQuery } from '../../services/TMDB';
+import genreIcons from '../../assets/genres';
 import useStyles from './styles';
 
-const demoCategories = [
-  { label: 'Comedy', value: 'comedy' },
-  { label: 'Horror', value: 'horror' },
-  { label: 'Action', value: 'action' },
-  { label: 'Drama', value: 'drama' },
-];
 const categories = [
   { label: 'Popular', value: 'popular' },
   { label: 'Top Rated', value: 'top_rated' },
@@ -34,6 +32,8 @@ const blueLogo =
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const classes = useStyles();
+  const { data, isFetching } = useGetGenresQuery();
+  console.log(data);
 
   return (
     <>
@@ -52,7 +52,7 @@ const Sidebar = ({ setMobileOpen }) => {
             <ListItem button onClick={() => {}}>
               <ListItemIcon>
                 <img
-                  // src={redLogo}
+                  src={genreIcons[label.toLowerCase()]}
                   className={classes.genreImages}
                   height={30}
                 />
@@ -65,20 +65,26 @@ const Sidebar = ({ setMobileOpen }) => {
       <Divider />
       <List>
         <ListSubheader> Genres </ListSubheader>
-        {demoCategories.map(({ label, value }) => (
-          <Link key={value} className={classes.link} to="/">
-            <ListItem button onClick={() => {}}>
-              <ListItemIcon>
-                <img
-                  // src={redLogo}
-                  className={classes.genreImages}
-                  height={30}
-                />
-              </ListItemIcon>
-              <ListItemText primary={label} />
-            </ListItem>
-          </Link>
-        ))}
+        {isFetching ? (
+          <Box display="flex" justifyContent="center">
+            <CircularProgress size="4rem" />
+          </Box>
+        ) : (
+          data.genres.map(({ name, id }) => (
+            <Link key={name} className={classes.link} to="/">
+              <ListItem button onClick={() => {}}>
+                <ListItemIcon>
+                  <img
+                    src={genreIcons[name.toLowerCase()]}
+                    className={classes.genreImages}
+                    height={30}
+                  />
+                </ListItemIcon>
+                <ListItemText primary={name} />
+              </ListItem>
+            </Link>
+          ))
+        )}
       </List>
       <Divider />
     </>
