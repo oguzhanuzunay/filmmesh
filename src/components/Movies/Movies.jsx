@@ -6,7 +6,10 @@ import {
   Typography,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
+import {
+  selectGenreOrCategory,
+  searchMovie,
+} from '../../features/currentGenreOrCategory';
 
 import { useGetMoviesQuery } from '../../services/TMDB';
 // eslint-disable-next-line import/no-cycle
@@ -14,12 +17,13 @@ import { MovieList } from '..';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-  const { genreIdOrCategoryName } = useSelector(
+  const { genreIdOrCategoryName, searchQuery } = useSelector(
     (state) => state.currentGenreOrCategory,
   );
   const { data, error, isFetching } = useGetMoviesQuery({
     genreIdOrCategoryName,
     page,
+    searchQuery,
   });
 
   if (isFetching) {
