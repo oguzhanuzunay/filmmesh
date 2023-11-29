@@ -1,24 +1,16 @@
+/* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  CircularProgress,
-  useMediaQuery,
-  Typography,
-} from '@mui/material';
+import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
-import {
-  selectGenreOrCategory,
-  searchMovie,
-} from '../../features/currentGenreOrCategory';
+import { selectGenreOrCategory, searchMovie } from '../../features/currentGenreOrCategory';
 
 import { useGetMoviesQuery } from '../../services/TMDB';
-// eslint-disable-next-line import/no-cycle
-import { MovieList } from '..';
+import { MovieList, Pagination } from '..';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
   const { genreIdOrCategoryName, searchQuery } = useSelector(
-    (state) => state.currentGenreOrCategory,
+    (state) => state.currentGenreOrCategory
   );
   const { data, error, isFetching } = useGetMoviesQuery({
     genreIdOrCategoryName,
@@ -28,7 +20,10 @@ const Movies = () => {
 
   if (isFetching) {
     return (
-      <Box display="flex" justifyContent="center">
+      <Box
+        display="flex"
+        justifyContent="center"
+      >
         <CircularProgress size="4rem" />
       </Box>
     );
@@ -36,8 +31,16 @@ const Movies = () => {
 
   if (!data.results.length) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" mt="20px">
-        <Typography variant="h4" color="textSecondary">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        mt="20px"
+      >
+        <Typography
+          variant="h4"
+          color="textSecondary"
+        >
           No movies that mach name.
           <br />
           Please search for something else.
@@ -53,6 +56,11 @@ const Movies = () => {
   return (
     <div>
       <MovieList movies={data} />
+      <Pagination
+        currentPage={page}
+        setPage={setPage}
+        totalPages={data.total_pages}
+      />
     </div>
   );
 };

@@ -1,17 +1,17 @@
-/* eslint-disable import/no-cycle */ import React from 'react';
+/* eslint-disable import/no-cycle */ import React, { useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { useGetActorDetailQuery, useGetMoviesByActorQuery } from '../../services/TMDB';
+import { Pagination, MovieList } from '..';
 
 import useStyles from './styles';
-import { MovieList } from '..';
 
 const Actors = () => {
   const { id } = useParams();
   const history = useHistory();
   const classes = useStyles();
-  const page = 1;
+  const [page, setPage] = useState(1);
 
   const { data, error, isFetching } = useGetActorDetailQuery({ id });
   const { data: movies, isFetching: moviesFetching } = useGetMoviesByActorQuery({
@@ -149,6 +149,11 @@ const Actors = () => {
         ) : (
           <Box>Sorry nothing was found</Box>
         )}
+        <Pagination
+          currentPage={page}
+          setPage={setPage}
+          totalPages={movies?.total_pages}
+        />
       </Box>
     </Grid>
   );

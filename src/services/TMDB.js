@@ -23,18 +23,12 @@ export const tmdbApi = createApi({
         }
 
         //* Get Category by Category
-        if (
-          genreIdOrCategoryName &&
-          typeof genreIdOrCategoryName === 'string'
-        ) {
+        if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'string') {
           return `movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`;
         }
 
         //* Get Category by Genre
-        if (
-          genreIdOrCategoryName &&
-          typeof genreIdOrCategoryName === 'number'
-        ) {
+        if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'number') {
           return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&api_key=${tmdbApiKey}`;
         }
 
@@ -45,14 +39,12 @@ export const tmdbApi = createApi({
 
     //* Get Movie by ID
     getMovie: builder.query({
-      query: ({ id }) =>
-        `movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`,
+      query: ({ id }) => `movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`,
     }),
 
     //* Get User Specific Lists
     getRecommendation: builder.query({
-      query: ({ movie_id, list }) =>
-        `movie/${movie_id}/${list}?api_key=${tmdbApiKey}`,
+      query: ({ movie_id, list }) => `movie/${movie_id}/${list}?api_key=${tmdbApiKey}`,
     }),
 
     //* Get Actor by ID
@@ -61,10 +53,8 @@ export const tmdbApi = createApi({
     }),
 
     //* Get Movie by Actor ID
-    //* Get Movie by Actor ID
     getMoviesByActor: builder.query({
-      query: ({ id, page }) =>
-        `discover/movie?with_cast=${id}&page=${page}&api_key=${tmdbApiKey}`,
+      query: ({ id, page }) => `discover/movie?with_cast=${id}&page=${page}&api_key=${tmdbApiKey}`,
     }),
   }),
 });
