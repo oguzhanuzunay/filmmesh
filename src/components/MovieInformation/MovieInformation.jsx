@@ -72,7 +72,11 @@ const MovieInformation = () => {
       <Grid item sm={6} lg={4}>
         <img
           className={classes.poster}
-          src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}
+          src={
+            data?.poster_path === null
+              ? `https://via.placeholder.com/500x750?text=${'No Poster Available'}`
+              : `https://image.tmdb.org/t/p/w500/${data?.poster_path}`
+          }
           alt={data.title}
         />
       </Grid>
