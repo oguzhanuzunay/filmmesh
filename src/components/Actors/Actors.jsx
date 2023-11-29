@@ -1,4 +1,4 @@
-/* eslint-disable import/no-cycle */ import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
@@ -18,7 +18,7 @@ const Actors = () => {
     id,
     page,
   });
- 
+
   if (isFetching || moviesFetching) {
     return (
       <Box
