@@ -17,6 +17,7 @@ const MovieList = ({ movies, numberOfMovies }) => {
           key={index}
           movie={movie}
           index={index}
+          className={classes.moviesContainer}
         />
       ))}
     </Grid>

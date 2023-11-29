@@ -84,25 +84,20 @@ const NavBar = () => {
               <Button
                 color="inherit"
                 component={Link}
-                to="/profile/:id"
+                to={`/profile/${user.id}`}
                 className={classes.linkButton}
                 onClick={() => {}}
               >
-                {!isMobile && <> My Movies &nbsp;</>}
+                {!isMobile && <>My Movies &nbsp;</>}
                 <Avatar
+                  style={{ width: 30, height: 30 }}
                   alt="Profile"
-                  src=""
-                  style={{ width: '30px', height: '30px' }}
+                  src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
                 />
               </Button>
             )}
           </div>
-          {isMobile && (
-            <>
-              {' '}
-              <Search /> &nbsp;
-            </>
-          )}
+          {isMobile && <Search />}
         </Toolbar>
       </AppBar>
       <div>
@@ -114,7 +109,7 @@ const NavBar = () => {
               open={mobileOpen}
               onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               classes={{ paper: classes.drawerPaper }}
-              ModelProps={{ keepMounted: true }}
+              ModalProps={{ keepMounted: true }}
             >
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
