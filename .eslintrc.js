@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  root: true,
   extends: ['plugin:react/recommended', 'airbnb'],
   parserOptions: {
     ecmaFeatures: {
@@ -19,6 +20,7 @@ module.exports = {
     'linebreak-style': 0,
     'react/state-in-constructor': 0,
     'import/prefer-default-export': 0,
+    'import/no-cycle': 0,
     'react/function-component-definition': [
       2,
       {
