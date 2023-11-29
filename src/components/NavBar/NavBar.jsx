@@ -1,20 +1,7 @@
 /* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from 'react';
-import {
-  AppBar,
-  IconButton,
-  Toolbar,
-  Drawer,
-  Button,
-  Avatar,
-  useMediaQuery,
-} from '@mui/material';
-import {
-  Menu,
-  AccountCircle,
-  Brightness4,
-  Brightness7,
-} from '@mui/icons-material';
+import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
+import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,7 +22,6 @@ const NavBar = () => {
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
 
-
   useEffect(() => {
     const logInUser = async () => {
       if (token) {
@@ -48,9 +34,7 @@ const NavBar = () => {
         } else {
           const sessionId = await createSessionId();
 
-          const { data: userData } = await moviesApi.get(
-            `/account?session_id=${sessionId}`,
-          );
+          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionId}`);
 
           dispatch(setUser(userData));
         }
@@ -76,7 +60,11 @@ const NavBar = () => {
             </IconButton>
           )}
 
-          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+          <IconButton
+            color="inherit"
+            sx={{ ml: 1 }}
+            onClick={() => {}}
+          >
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}

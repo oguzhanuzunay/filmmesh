@@ -18,7 +18,7 @@ const Actors = () => {
     id,
     page,
   });
-
+ 
   if (isFetching || moviesFetching) {
     return (
       <Box

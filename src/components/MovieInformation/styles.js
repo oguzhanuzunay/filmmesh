@@ -14,6 +14,11 @@ export default makeStyles((theme) => ({
     borderRadius: '20px',
     boxShadow: '0.5em 1em 1em rgba(64,64,70)',
     width: '80%',
+
+    [theme.breakpoints.down('md')]: {
+      margin: '0 auto',
+      width: '50%',
+    },
     [theme.breakpoints.down('sm')]: {
       margin: '0 auto',
       width: '100%',

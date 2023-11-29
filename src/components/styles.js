@@ -5,11 +5,12 @@ export default makeStyles(() => ({
     display: 'flex',
     height: '100%',
   },
+  toolbar: {
+    height: '70px',
+  },
   content: {
     flexGrow: '1',
     padding: '2em',
-  },
-  toolbar: {
-    height: '70px',
+    width: '100%',
   },
 }));

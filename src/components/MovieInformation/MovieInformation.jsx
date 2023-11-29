@@ -81,6 +81,7 @@ const MovieInformation = () => {
         item
         sm={6}
         lg={4}
+        style={{ display: 'flex', marginBottom: '30px' }}
       >
         <img
           className={classes.poster}
@@ -138,10 +139,7 @@ const MovieInformation = () => {
             align="center"
             gutterBottom
           >
-            {data?.runtime}min{' '}
-            {data?.spoken_languages.length > 0
-              ? ` / ${data?.spoken_languages[0].english_name}`
-              : ''}
+            {data?.runtime}min | Language: {data?.spoken_languages[0].english_name}
           </Typography>
         </Grid>
         <Grid

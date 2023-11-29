@@ -11,22 +11,34 @@ const Profile = () => {
   const favoriteMovies = user?.favoriteMovies || [];
 
   const logout = () => {
-    localStorage.removeItem('token');
-    window.location.reload();
+    localStorage.clear();
+    window.location.href = '/';
   };
 
   return (
     <Box>
-      <Box display="flex" justifyContent="space-between">
-        <Typography variant="h4" gutterBottom>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+        >
           My Profile
         </Typography>
-        <Button color="inherit" onclick={logout}>
+        <Button
+          color="inherit"
+          onClick={logout}
+        >
           Logout &nbsp; <ExitToApp />
         </Button>
       </Box>
       {!favoriteMovies.length ? (
-        <Typography variant="h5" gutterBottom>
+        <Typography
+          variant="h5"
+          gutterBottom
+        >
           You don't have any favorite movies yet!
         </Typography>
       ) : (
