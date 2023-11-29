@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React, { useState } from 'react';
 import {
   Modal,
@@ -27,11 +28,8 @@ import axios from 'axios';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import useStyles from './styles';
 import genreIcons from '../../assets/genres';
-import {
-  useGetMovieQuery,
-  useGetRecommendationQuery,
-} from '../../services/TMDB';
-import MovieList from '../MovieList/MovieList';
+import { useGetMovieQuery, useGetRecommendationQuery } from '../../services/TMDB';
+import { MovieList } from '..';
 
 const MovieInformation = () => {
   const { id } = useParams();
@@ -44,7 +42,6 @@ const MovieInformation = () => {
     list: '/recommendations',
     movie_id: id,
   });
-  console.log(data?.videos?.results?.length);
 
   const isMovieInFavorites = false;
   const isMovieInWatchList = false;
@@ -54,22 +51,37 @@ const MovieInformation = () => {
 
   if (isFetching) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         <CircularProgress size="8rem" />
       </Box>
     );
   }
   if (error) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Link to="/"> Something has gone wrong - Go Back </Link>
       </Box>
     );
   }
 
   return (
-    <Grid container className={classes.containerSpaceAround}>
-      <Grid item sm={6} lg={4}>
+    <Grid
+      container
+      className={classes.containerSpaceAround}
+    >
+      <Grid
+        item
+        sm={6}
+        lg={4}
+      >
         <img
           className={classes.poster}
           src={
@@ -80,16 +92,38 @@ const MovieInformation = () => {
           alt={data.title}
         />
       </Grid>
-      <Grid item container direction="column" lg={7}>
-        <Typography variant="h3" align="center" gutterBottom>
+      <Grid
+        item
+        container
+        direction="column"
+        lg={7}
+      >
+        <Typography
+          variant="h3"
+          align="center"
+          gutterBottom
+        >
           {data?.title} ({data.release_date?.split('-')[0]})
         </Typography>
-        <Typography variant="h5" align="center" gutterBottom>
+        <Typography
+          variant="h5"
+          align="center"
+          gutterBottom
+        >
           {data?.tagline}
         </Typography>
-        <Grid item className={classes.containerSpaceAround}>
-          <Box display="flex" justifyContent="center">
-            <Rating readOnly value={data.vote_average / 2} />
+        <Grid
+          item
+          className={classes.containerSpaceAround}
+        >
+          <Box
+            display="flex"
+            justifyContent="center"
+          >
+            <Rating
+              readOnly
+              value={data.vote_average / 2}
+            />
 
             <Typography
               variant="subtitle1"
@@ -99,14 +133,21 @@ const MovieInformation = () => {
               {data?.vote_average.toFixed(1)} /10
             </Typography>
           </Box>
-          <Typography variant="h6" align="center" gutterBottom>
+          <Typography
+            variant="h6"
+            align="center"
+            gutterBottom
+          >
             {data?.runtime}min{' '}
             {data?.spoken_languages.length > 0
               ? ` / ${data?.spoken_languages[0].english_name}`
               : ''}
           </Typography>
         </Grid>
-        <Grid item className={classes.genresContainer}>
+        <Grid
+          item
+          className={classes.genresContainer}
+        >
           {data?.genres?.map((genre) => (
             <Link
               key={genre.name}
@@ -119,19 +160,28 @@ const MovieInformation = () => {
                 className={classes.genreImage}
                 height={30}
               />
-              <Typography color="textPrimary" variant="subtitle1" gutterBottom>
+              <Typography
+                color="textPrimary"
+                variant="subtitle1"
+                gutterBottom
+              >
                 {genre.name}
               </Typography>
             </Link>
           ))}
         </Grid>
-        <Typography variant="h5" align="center" style={{ marginTop: '10px' }}>
+        <Typography
+          variant="h5"
+          align="center"
+          style={{ marginTop: '10px' }}
+        >
           Overview
         </Typography>
-        <Typography style={{ marginBottom: '2rem' }}>
-          {data?.overview}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
+        <Typography style={{ marginBottom: '2rem' }}>{data?.overview}</Typography>
+        <Typography
+          variant="h5"
+          gutterBottom
+        >
           Top Cast
         </Typography>
         <Grid
@@ -164,6 +214,7 @@ const MovieInformation = () => {
                   color="textPrimary"
                   align="center"
                   variant="subtitle2"
+                  className={classes.castName}
                 >
                   {character?.name}
                 </Typography>
@@ -171,16 +222,29 @@ const MovieInformation = () => {
                   color="textSecondary"
                   align="center"
                   variant="subtitle2"
+                  className={classes.castName}
                 >
                   {character?.character.split(' /')[0]}
                 </Typography>
               </Grid>
             ))}
         </Grid>
-        <Grid item container style={{ marginTop: '2rem' }}>
+        <Grid
+          item
+          container
+          style={{ marginTop: '2rem' }}
+        >
           <div className={classes.buttonsContainer}>
-            <Grid item xs={12} md={6} className={classes.buttonsContainer}>
-              <ButtonGroup size="medium" variant="outlined">
+            <Grid
+              item
+              xs={12}
+              md={6}
+              className={classes.buttonsContainer}
+            >
+              <ButtonGroup
+                size="medium"
+                variant="outlined"
+              >
                 <Button
                   target="_blank"
                   rel="noopener noreferrer"
@@ -203,24 +267,24 @@ const MovieInformation = () => {
                   endIcon={<Theaters />}
                   disabled={data?.videos?.results?.length === 0}
                 >
-                  {data?.videos?.results?.length === 0
-                    ? 'No Trailer'
-                    : 'Trailer'}
+                  {data?.videos?.results?.length === 0 ? 'No Trailer' : 'Trailer'}
                 </Button>
               </ButtonGroup>
             </Grid>
-            <Grid item xs={12} md={6} className={classes.buttonsContainer}>
-              <ButtonGroup size="medium" variant="outlined">
+            <Grid
+              item
+              xs={12}
+              md={6}
+              className={classes.buttonsContainer}
+            >
+              <ButtonGroup
+                size="medium"
+                variant="outlined"
+              >
                 <Button
                   href="#"
                   onClick={() => {}}
-                  endIcon={
-                    isMovieInFavorites ? (
-                      <FavoriteBorderOutlined />
-                    ) : (
-                      <Favorite />
-                    )
-                  }
+                  endIcon={isMovieInFavorites ? <FavoriteBorderOutlined /> : <Favorite />}
                 >
                   {isMovieInFavorites ? 'UnFavorite' : 'Favorite'}
                 </Button>
@@ -253,12 +317,22 @@ const MovieInformation = () => {
           </div>
         </Grid>
       </Grid>
-      <Box marginTop="5rem" width="100%">
-        <Typography variant="h5" gutterBottom align="center">
+      <Box
+        marginTop="5rem"
+        width="100%"
+      >
+        <Typography
+          variant="h5"
+          gutterBottom
+          align="center"
+        >
           You Might Also Like
         </Typography>
         {recommendations ? (
-          <MovieList movies={recommendations} numberOfMovies={12} />
+          <MovieList
+            movies={recommendations}
+            numberOfMovies={12}
+          />
         ) : (
           <Box>Sorry nothing was found</Box>
         )}
