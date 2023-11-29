@@ -40,14 +40,11 @@ const MovieInformation = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
-  const {
-    data: recommendations,
-    isFetching: isRecommendationFetching,
-    error: recommendationError,
-  } = useGetRecommendationQuery({
+  const { data: recommendations } = useGetRecommendationQuery({
     list: '/recommendations',
     movie_id: id,
   });
+  console.log(data?.videos?.results?.length);
 
   const isMovieInFavorites = false;
   const isMovieInWatchList = false;
@@ -152,7 +149,11 @@ const MovieInformation = () => {
               >
                 <img
                   className={classes.castImage}
-                  src={`https://image.tmdb.org/t/p/w500/${character.profile_path}`}
+                  src={
+                    character?.profile_path === null
+                      ? `https://via.placeholder.com/500x750?text=${character?.name}`
+                      : `https://image.tmdb.org/t/p/w500/${character?.profile_path}`
+                  }
                   alt={character.name}
                 />
                 <Typography
@@ -196,8 +197,11 @@ const MovieInformation = () => {
                   href="#"
                   onClick={() => setOpen(true)}
                   endIcon={<Theaters />}
+                  disabled={data?.videos?.results?.length === 0}
                 >
-                  Trailer
+                  {data?.videos?.results?.length === 0
+                    ? 'No Trailer'
+                    : 'Trailer'}
                 </Button>
               </ButtonGroup>
             </Grid>
@@ -255,23 +259,23 @@ const MovieInformation = () => {
           <Box>Sorry nothing was found</Box>
         )}
       </Box>
-      <Modal
-        closeAfterTransition
-        className={classes.modal}
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        {data?.videos?.results?.length > 0 && (
+      {data?.videos?.results?.length > 0 && (
+        <Modal
+          closeAfterTransition
+          className={classes.modal}
+          open={open}
+          onClose={() => setOpen(false)}
+        >
           <iframe
             autoPlay
-            className={classes.video}
+            className={classes?.video}
             style={{ border: 'none' }}
             title="Trailer"
-            src={`https://www.youtube.com/embed/${data.videos.results[0].key}?autoplay=1&mute=1`}
+            src={`https://www.youtube.com/embed/${data.videos?.results[0]?.key}?autoplay=1&mute=1`}
             allow="autoplay"
           />
-        )}
-      </Modal>
+        </Modal>
+      )}
     </Grid>
   );
 };
