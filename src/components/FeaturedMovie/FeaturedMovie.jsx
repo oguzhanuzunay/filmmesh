@@ -8,8 +8,6 @@ const FeaturedMovie = ({ movie }) => {
 
   if (!movie) return null;
 
-  console.log(movie);
-
   return (
     <Box
       component={Link}
@@ -34,14 +32,14 @@ const FeaturedMovie = ({ movie }) => {
           >
             <Typography
               variant="h5"
-              color="textPrimary"
+              color="#fff"
               gutterBottom
             >
               {movie.title}
             </Typography>
             <Typography
               variant="body2"
-              color="textPrimary"
+              color="#fff"
               gutterBottom
             >
               {movie.overview}
