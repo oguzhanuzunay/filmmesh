@@ -19,8 +19,8 @@ https://github.com/oguzhanuzunay/filmmesh/assets/48884275/66986e9b-b9e8-46aa-a25
 ## 📄 Table of Contents
 
 - [📋Features](#features)
-- [🤖 AI Voiece Commands](#ai-commands)
 - [💻 Technologies Used](#technologies-used)
+- [🤖 AI Voiece Commands](#ai-commands)
 - [🛠️ Getting Started](#getting-started)
 - [🤝 Contributing](#contributing)
 - [🚧 Pending Issues](#pending-issues)
@@ -34,7 +34,16 @@ https://github.com/oguzhanuzunay/filmmesh/assets/48884275/66986e9b-b9e8-46aa-a25
 - **🤖 AI Voice Assistance:** Interact with FilmMesh using your voice for a hands-free journey.
 - **🌓 Dark and Light Mode:** Personalize your viewing experience with the choice of dark or light mode.
 
-<h2 id="ai-commands">🤖 AI Voiece Commands </h2>
+<h2 id="technologies-used">💻 Technologies Used </h2>
+
+- **[React:](https://react.dev/)** A JavaScript library for building user interfaces.
+- **[Redux:](https://redux.js.org/)** A predictable state container for JavaScript apps, bringing enhanced state management to FilmMesh.
+- **[Redux Toolkit:](https://redux-toolkit.js.org/)** The official, opinionated, batteries-included toolset for efficient Redux development, streamlining the Redux setup in FilmMesh.
+- **[Material UI:](https://mui.com/)** A React UI framework that implements Google's Material Design.
+- **[Alan AI:](https://alan.app/)** An AI voice assistant platform for adding a voice interface to your applications.
+- **[TMDB (The Movie Database):](https://developer.themoviedb.org/docs)** A comprehensive movie database providing rich data for FilmMesh.
+
+- <h2 id="ai-commands">🤖 AI Voiece Commands </h2>
 
 - **" What does this app do?" / " What can I do here? " / " What is this app about? " :** Provides an overview of FilmMesh and suggests some commands to try.
 - **" Make it dark " :** Changes the app interface to dark mode, suitable for Batman enthusiasts.
@@ -47,14 +56,6 @@ https://github.com/oguzhanuzunay/filmmesh/assets/48884275/66986e9b-b9e8-46aa-a25
 - **" Give me something funny. " / " I want to laugh " :** Selects the Comedy genre for a light-hearted and humorous movie selection.
 - **" Surprise me " :** Randomly picks a genre and suggests movies for a delightful surpris
 
-<h2 id="technologies-used">💻 Technologies Used </h2>
-
-- **[React:](https://react.dev/)** A JavaScript library for building user interfaces.
-- **[Redux:](https://redux.js.org/)** A predictable state container for JavaScript apps, bringing enhanced state management to FilmMesh.
-- **[Redux Toolkit:](https://redux-toolkit.js.org/)** The official, opinionated, batteries-included toolset for efficient Redux development, streamlining the Redux setup in FilmMesh.
-- **[Material UI:](https://mui.com/)** A React UI framework that implements Google's Material Design.
-- **[Alan AI:](https://alan.app/)** An AI voice assistant platform for adding a voice interface to your applications.
-- **[TMDB (The Movie Database):](https://developer.themoviedb.org/docs)** A comprehensive movie database providing rich data for FilmMesh.
 
 <h2 id="getting-started">🛠️ Getting Started </h2>
 
