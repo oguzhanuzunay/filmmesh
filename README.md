@@ -1,4 +1,4 @@
-# 🎬 FilmMesh 🎭 - 🤖 AI Assistant Power Movie Websites 
+# 🎬 FilmMesh 🎭 - 🤖 AI Voice Assistant Powered Film Web App 
  ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TailwindCSS](https://img.shields.io/badge/Material_UI-42a5f5.svg?style=for-the-badge&logo=mui&logoColor=white) ![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 
 
